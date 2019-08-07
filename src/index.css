@@ -1,0 +1,6 @@
+:global html,
+:global body,
+:global #react-root {
+  margin: 0;
+  height: 100%;
+}
