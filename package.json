@@ -6,6 +6,11 @@
   "scripts": {
     "build": "NODE_ENV=production rollup -c",
     "dev": "NODE_ENV=development rollup -c -w",
+    "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
+    "format:check": "prettier --list-different \"src/**/*.{js,jsx,css}\"",
+    "format:watch": "onchange --await-write-finish 0 \"src/**/*.{js,jsx,json,css}\" -- sh -c 'clear; npx prettier --write {{changed}} && echo FORMAT OK'",
+    "lint:check": "eslint -c .eslintrc.json src/**/*.{js,jsx}",
+    "lint:watch": "onchange -d 1000 \"src/**/*.{js,jsx}\" -- sh -c 'clear; npx eslint -c .eslintrc.json {{changed}} && echo LINTER OK'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -41,6 +46,13 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^9.6.1",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-chai-friendly": "^0.4.1",
+    "eslint-plugin-mocha": "^6.0.0",
+    "eslint-plugin-react": "^7.14.3",
+    "prettier": "^1.18.2",
     "redux-logger": "3.0.0",
     "rollup": "^1.19.3",
     "rollup-plugin-babel": "^4.3.3",
