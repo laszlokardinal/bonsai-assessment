@@ -27,5 +27,5 @@
     "@babel/polyfill"
   ],
   "all": true,
-  "sourceMap": false
+  "sourceMap": true
 }
