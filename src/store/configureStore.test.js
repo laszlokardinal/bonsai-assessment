@@ -1,6 +1,9 @@
 /* global require */
 
 import mock from "mock-require";
+import { all } from "redux-saga/effects";
+
+const runSpy = sinon.spy();
 
 describe("configureStore()", () => {
   before(() => {
@@ -19,6 +22,14 @@ describe("configureStore()", () => {
       __esModule: true
     });
 
+    mock("redux-saga", {
+      default: () => ({
+        CREATE_SAGA_MIDDLEWARE_RETURN_VALUE: true,
+        run: runSpy
+      }),
+      __esModule: true
+    });
+
     mock("redux-logger", {
       createLogger: () => "CREATE_LOGGER_RETURN_VALUE",
       __esModule: true
@@ -27,6 +38,10 @@ describe("configureStore()", () => {
 
   after(() => {
     mock.stopAll();
+  });
+
+  beforeEach(() => {
+    runSpy.resetHistory();
   });
 
   it("builds the right reducer structure", () => {
@@ -51,7 +66,11 @@ describe("configureStore()", () => {
     expect(store[0]).to.equal("CREATE_STORE");
     expect(store[2]).to.deep.equal([
       "APPLY_MIDDLEWARE",
-      "CREATE_HISTORY_ROUTER_MIDDLEWARE"
+      "CREATE_HISTORY_ROUTER_MIDDLEWARE",
+      {
+        CREATE_SAGA_MIDDLEWARE_RETURN_VALUE: true,
+        run: runSpy
+      }
     ]);
   });
 
@@ -69,5 +88,23 @@ describe("configureStore()", () => {
     } finally {
       process.env.NODE_ENV = originalNodeEnv;
     }
+  });
+
+  it("runs the root saga", () => {
+    const { configureStore } = require("./index.js");
+
+    configureStore();
+
+    expect(runSpy).to.have.been.calledOnce;
+    expect(runSpy.args[0][0]).to.be.a("function");
+
+    const gen = runSpy.args[0][0]();
+
+    expect(gen.next()).to.deep.equal({
+      value: all([]),
+      done: false
+    });
+
+    expect(gen.next().done).to.equal(true);
   });
 });
