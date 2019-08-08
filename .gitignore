@@ -31,7 +31,7 @@ node_modules/
 .eslintcache
 
 # dotenv environment variables file
-.env.production
+.env
 
 # package lock
 package-lock.json

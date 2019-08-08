@@ -55,6 +55,7 @@
     "chai": "^4.2.0",
     "chai-diff": "^1.0.1",
     "chai-enzyme": "^1.0.0-beta.1",
+    "dotenv": "^8.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^6.1.0",

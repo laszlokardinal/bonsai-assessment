@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+
 import postcss from "rollup-plugin-postcss";
 import autoprefixer from "autoprefixer";
 
@@ -10,7 +12,26 @@ import serve from "rollup-plugin-serve";
 import json from "rollup-plugin-json";
 import livereload from "rollup-plugin-livereload";
 
+dotenv.config();
+
 const production = process.env.NODE_ENV === "production";
+
+const missingEnvironmentVariables = [
+  "NODE_ENV",
+  "API_BASE_URL",
+  "API_TOKEN",
+  process.env.NODE_ENV === "development" && "FRONTEND_DEV_PORT"
+]
+  .filter(id => id)
+  .filter(environmentVariable => !(environmentVariable in process.env));
+
+if (missingEnvironmentVariables.length) {
+  missingEnvironmentVariables.forEach(missingEnv =>
+    console.error(`Missing environment variable: ${missingEnv}`)
+  );
+
+  process.exit(1);
+}
 
 export default {
   input: "src/index.js",
@@ -33,7 +54,9 @@ export default {
     }),
     nodeResolve({ browser: true }),
     replace({
-      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+      "process.env.API_BASE_URL": JSON.stringify(process.env.API_BASE_URL),
+      "process.env.API_TOKEN": JSON.stringify(process.env.API_TOKEN)
     }),
     commonjs({
       include: "node_modules/**"
@@ -57,7 +80,7 @@ export default {
         contentBase: ["public"],
         historyApiFallback: true,
         host: "localhost",
-        port: 5000
+        port: process.env.FRONTEND_DEV_PORT
       }),
     !production && livereload({ watch: "public" })
   ]
