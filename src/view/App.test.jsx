@@ -1,7 +1,7 @@
 import { App } from "./";
 import { RouterProvider } from "reduxen-react-dom";
 
-import { IndexScreen } from "./screens";
+import { IndexScreen, PlaylistScreen } from "./screens";
 
 describe("<App />", () => {
   it("renders a RouterProvider", () => {
@@ -32,6 +32,16 @@ describe("<App />", () => {
     expect(wrapper.children()).to.have.prop("state", state);
     expect(wrapper.children()).to.have.prop("dispatch", dispatch);
   });
+
+  it("renders PlaylistScreen on /playlists/:id", () => {
+    const state = { router: { path: "/playlists/test", query: {}, hash: "" } };
+    const dispatch = () => null;
+
+    const wrapper = shallow(<App state={state} dispatch={dispatch} />);
+
+    expect(wrapper.children()).to.have.length(1);
+    expect(wrapper.children()).to.have.type(PlaylistScreen);
+    expect(wrapper.children()).to.have.prop("state", state);
+    expect(wrapper.children()).to.have.prop("dispatch", dispatch);
   });
-*/
 });
