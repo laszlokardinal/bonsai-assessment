@@ -2,8 +2,9 @@ import "@babel/polyfill";
 
 import "./index.css";
 
-import React from "react";
 import ReactDOM from "react-dom";
+import React from "react";
+import window from "window";
 
 import Root from "react-redux-root";
 

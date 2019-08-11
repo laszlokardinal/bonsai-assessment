@@ -1,0 +1,31 @@
+{
+  "check-coverage": true,
+  "per-file": true,
+  "lines": 95,
+  "statements": 95,
+  "functions": 95,
+  "branches": 95,
+  "include": [
+    "src"
+  ],
+  "extension": [
+    ".jsx"
+  ],
+  "exclude": [
+    "build",
+    "**/*.test.js",
+    "**/*.test.jsx"
+  ],
+  "reporter": [
+    "html",
+    "lcov",
+    "text",
+    "text-summary"
+  ],
+  "require": [
+    "@babel/register",
+    "@babel/polyfill"
+  ],
+  "all": true,
+  "sourceMap": false
+}
