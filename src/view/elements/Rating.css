@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-self: center;
+
+  height: 24px;
+
+  white-space: nowrap;
+  user-select: none;
+}
+
+.wrapper .buttonWrapper {
+  display: none;
+}
+
+.wrapper:hover .displayWrapper {
+  display: none;
+}
+
+.wrapper:hover .buttonWrapper {
+  display: block;
+}
+
+.displayWrapper {
+  color: #dee2e6;
+}
+
+.active {
+  color: #495057;
+}
+
+.buttonWrapper {
+  color: #339af0;
+}
+
+.iconButton {
+  cursor: pointer;
+}
+
+.iconButton:hover ~ .iconButton {
+  color: #dee2e6;
+}
