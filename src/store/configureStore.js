@@ -4,11 +4,18 @@ import { createHistoryRouter } from "reduxen";
 import createSagaMiddleware from "redux-saga";
 import { all } from "redux-saga/effects";
 
+import { createDataReducer, queriesReducer } from "./reducers";
+
 const configureStore = () => {
   const historyRouter = createHistoryRouter();
 
   const rootReducer = combineReducers({
-    router: historyRouter.reducer
+    router: historyRouter.reducer,
+    queries: queriesReducer,
+    data: combineReducers({
+      songs: createDataReducer("songs"),
+      playlists: createDataReducer("playlists")
+    })
   });
 
   const sagaMiddleware = createSagaMiddleware();

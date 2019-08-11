@@ -34,6 +34,12 @@ describe("configureStore()", () => {
       createLogger: () => "CREATE_LOGGER_RETURN_VALUE",
       __esModule: true
     });
+
+    mock("./reducers", {
+      createDataReducer: (...args) => ["CREATE_DATA_REDUCER", ...args],
+      queriesReducer: "QUERIES_REDUCER",
+      __esModule: true
+    });
   });
 
   after(() => {
@@ -53,7 +59,15 @@ describe("configureStore()", () => {
     expect(store[1]).to.deep.equal([
       "COMBINE_REDUCERS",
       {
-        router: "CREATE_HISTORY_ROUTER_REDUCER"
+        router: "CREATE_HISTORY_ROUTER_REDUCER",
+        queries: "QUERIES_REDUCER",
+        data: [
+          "COMBINE_REDUCERS",
+          {
+            songs: ["CREATE_DATA_REDUCER", "songs"],
+            playlists: ["CREATE_DATA_REDUCER", "playlists"]
+          }
+        ]
       }
     ]);
   });

@@ -1,0 +1,4 @@
+export const QUERY__LOAD = "QUERY__LOAD";
+export const QUERY__LOAD_SUCCESS = "QUERY__LOAD_SUCCESS";
+export const QUERY__LOAD_FAILURE = "QUERY__LOAD_FAILURE";
+export const QUERY__RELEASE = "QUERY__RELEASE";
