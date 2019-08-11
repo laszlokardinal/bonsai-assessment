@@ -38,6 +38,7 @@ describe("configureStore()", () => {
     mock("./reducers", {
       createDataReducer: (...args) => ["CREATE_DATA_REDUCER", ...args],
       queriesReducer: "QUERIES_REDUCER",
+      indexRouteReducer: "INDEX_ROUTE_REDUCER",
       __esModule: true
     });
   });
@@ -66,6 +67,12 @@ describe("configureStore()", () => {
           {
             songs: ["CREATE_DATA_REDUCER", "songs"],
             playlists: ["CREATE_DATA_REDUCER", "playlists"]
+          }
+        ],
+        routes: [
+          "COMBINE_REDUCERS",
+          {
+            indexRoute: "INDEX_ROUTE_REDUCER",
           }
         ]
       }
