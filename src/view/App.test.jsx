@@ -1,6 +1,8 @@
 import { App } from "./";
 import { RouterProvider } from "reduxen-react-dom";
 
+import { IndexScreen } from "./screens";
+
 describe("<App />", () => {
   it("renders a RouterProvider", () => {
     const state = { router: { path: "", query: {}, hash: "" } };
@@ -19,15 +21,17 @@ describe("<App />", () => {
       .equal(dispatch);
   });
 
-  /*
-  it("matches snapshot", () => {
-    const wrapper = shallow(<App state={{}} dispatch={() => null} />);
+  it("renders IndexScreen on /", () => {
+    const state = { router: { path: "/", query: {}, hash: "" } };
+    const dispatch = () => null;
 
-    expect(prettyFormat(wrapper.getElement)).not.to.be.differentFrom(`
-<div
-  className="wrapper"
-/>
-`);
+    const wrapper = shallow(<App state={state} dispatch={dispatch} />);
+
+    expect(wrapper.children()).to.have.length(1);
+    expect(wrapper.children()).to.have.type(IndexScreen);
+    expect(wrapper.children()).to.have.prop("state", state);
+    expect(wrapper.children()).to.have.prop("dispatch", dispatch);
+  });
   });
 */
 });
