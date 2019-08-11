@@ -11,7 +11,7 @@ import {
   indexRouteReducer
 } from "./reducers";
 
-import { indexRoute } from "./routes";
+import { indexRoute, playlistRoute } from "./routes";
 
 const configureStore = () => {
   const historyRouter = createHistoryRouter();
@@ -41,7 +41,7 @@ const configureStore = () => {
   const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
   const rootSaga = function*() {
-    yield all([call(indexRoute)]);
+    yield all([call(indexRoute), call(playlistRoute)]);
   };
 
   sagaMiddleware.run(rootSaga);

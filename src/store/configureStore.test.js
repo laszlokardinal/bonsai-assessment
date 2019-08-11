@@ -5,6 +5,7 @@ import { all, call } from "redux-saga/effects";
 
 const runSpy = sinon.spy();
 const indexRoute = () => null;
+const playlistRoute = () => null;
 
 describe("configureStore()", () => {
   before(() => {
@@ -46,6 +47,7 @@ describe("configureStore()", () => {
 
     mock("./routes", {
       indexRoute,
+      playlistRoute,
       __esModule: true
     });
   });
@@ -130,7 +132,7 @@ describe("configureStore()", () => {
     const gen = runSpy.args[0][0]();
 
     expect(gen.next()).to.deep.equal({
-      value: all([call(indexRoute)]),
+      value: all([call(indexRoute), call(playlistRoute)]),
       done: false
     });
 
