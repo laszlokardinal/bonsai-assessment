@@ -1,9 +1,10 @@
 /* global require */
 
 import mock from "mock-require";
-import { all } from "redux-saga/effects";
+import { all, call } from "redux-saga/effects";
 
 const runSpy = sinon.spy();
+const indexRoute = () => null;
 
 describe("configureStore()", () => {
   before(() => {
@@ -40,6 +41,11 @@ describe("configureStore()", () => {
       queriesReducer: "QUERIES_REDUCER",
       indexRouteReducer: "INDEX_ROUTE_REDUCER",
       playlistRouteReducer: "PLAYLIST_ROUTE_REDUCER",
+      __esModule: true
+    });
+
+    mock("./routes", {
+      indexRoute,
       __esModule: true
     });
   });
@@ -124,7 +130,7 @@ describe("configureStore()", () => {
     const gen = runSpy.args[0][0]();
 
     expect(gen.next()).to.deep.equal({
-      value: all([]),
+      value: all([call(indexRoute)]),
       done: false
     });
 

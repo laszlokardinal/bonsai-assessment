@@ -1,3 +1,6 @@
+export const ROUTER__ENTERED = "ROUTER__ENTERED";
+export const ROUTER__LEFT = "ROUTER__LEFT";
+
 export const QUERY__LOAD = "QUERY__LOAD";
 export const QUERY__LOAD_SUCCESS = "QUERY__LOAD_SUCCESS";
 export const QUERY__LOAD_FAILURE = "QUERY__LOAD_FAILURE";

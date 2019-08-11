@@ -2,7 +2,7 @@ import { combineReducers, createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import { createHistoryRouter } from "reduxen";
 import createSagaMiddleware from "redux-saga";
-import { all } from "redux-saga/effects";
+import { all, call } from "redux-saga/effects";
 
 import {
   createDataReducer,
@@ -10,6 +10,8 @@ import {
   playlistRouteReducer,
   indexRouteReducer
 } from "./reducers";
+
+import { indexRoute } from "./routes";
 
 const configureStore = () => {
   const historyRouter = createHistoryRouter();
@@ -39,7 +41,7 @@ const configureStore = () => {
   const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
   const rootSaga = function*() {
-    yield all([]);
+    yield all([call(indexRoute)]);
   };
 
   sagaMiddleware.run(rootSaga);
