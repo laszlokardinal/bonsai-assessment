@@ -39,6 +39,7 @@ describe("configureStore()", () => {
       createDataReducer: (...args) => ["CREATE_DATA_REDUCER", ...args],
       queriesReducer: "QUERIES_REDUCER",
       indexRouteReducer: "INDEX_ROUTE_REDUCER",
+      playlistRouteReducer: "PLAYLIST_ROUTE_REDUCER",
       __esModule: true
     });
   });
@@ -73,6 +74,7 @@ describe("configureStore()", () => {
           "COMBINE_REDUCERS",
           {
             indexRoute: "INDEX_ROUTE_REDUCER",
+            playlistRoute: "PLAYLIST_ROUTE_REDUCER"
           }
         ]
       }

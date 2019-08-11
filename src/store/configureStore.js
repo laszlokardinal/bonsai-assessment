@@ -7,6 +7,7 @@ import { all } from "redux-saga/effects";
 import {
   createDataReducer,
   queriesReducer,
+  playlistRouteReducer,
   indexRouteReducer
 } from "./reducers";
 
@@ -21,6 +22,7 @@ const configureStore = () => {
       playlists: createDataReducer("playlists")
     }),
     routes: combineReducers({
+      playlistRoute: playlistRouteReducer,
       indexRoute: indexRouteReducer
     })
   });
