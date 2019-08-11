@@ -1,0 +1,49 @@
+.title {
+  flex-grow: 1;
+}
+
+.card {
+  margin-bottom: 8px;
+
+  user-select: none;
+}
+
+.checkbox {
+  padding: 0;
+  margin-right: 12px;
+  height: 24px;
+
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+.checkbox:focus {
+  outline: 0;
+}
+
+.checkbox::-moz-focus-inner {
+  border: 0;
+}
+
+.checked {
+  color: #339af0;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+
+  padding: 80px 20px;
+}
+
+.dragIndicator {
+  margin-left: -10px;
+  color: #adb5bd;
+  opacity: 0;
+  transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.dragIndicatorActive {
+  opacity: 1;
+}
