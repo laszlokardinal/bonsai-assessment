@@ -10,7 +10,7 @@
     "format:check": "prettier --list-different \"src/**/*.{js,jsx,css}\"",
     "format:watch": "onchange --await-write-finish 0 \"src/**/*.{js,jsx,json,css}\" -- sh -c 'clear; npx prettier --write {{changed}} && echo FORMAT OK'",
     "lint:check": "eslint -c .eslintrc.json src/**/*.{js,jsx}",
-    "lint:watch": "onchange -d 1000 \"src/**/*.{js,jsx}\" -- sh -c 'clear; npx eslint -c .eslintrc.json {{changed}} && echo LINTER OK'",
+    "lint:watch": "onchange \"src/**/*.{js,jsx}\" -- sh -c 'clear; npx eslint -c .eslintrc.json {{changed}} && echo LINTER OK'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
